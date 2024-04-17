@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Infrastructure.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class SecondMigration : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -27,6 +27,23 @@ namespace Infrastructure.Persistence.Migrations
                 {
                     table.PrimaryKey("PK_Destinos", x => x.Id);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "PaqueteTuristicos",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Nombre = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Descripcion = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    FechaInicio = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    FechaFin = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Precio = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Activo = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PaqueteTuristicos", x => x.Id);
+                });
         }
 
         /// <inheritdoc />
@@ -34,6 +51,9 @@ namespace Infrastructure.Persistence.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Destinos");
+
+            migrationBuilder.DropTable(
+                name: "PaqueteTuristicos");
         }
     }
 }

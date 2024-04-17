@@ -15,7 +15,7 @@ public class PaqueteTuristicoConfiguration : IEntityTypeConfiguration<PaqueteTur
         builder.HasKey(c => c.Id);
 
         builder.Property(c => c.Id).HasConversion(
-            customerId => customerId.Value,
+            paqueteTuristicoId => paqueteTuristicoId.Value,
             value => new PaqueteTuristicoId(value));
 
         builder.Property(c => c.Nombre).HasMaxLength(50);
@@ -26,7 +26,7 @@ public class PaqueteTuristicoConfiguration : IEntityTypeConfiguration<PaqueteTur
 
         builder.Property(c => c.FechaFin).HasMaxLength(255);
 
-        builder.Property(c => c.Precio).IsRequired();
+        builder.Property(c => c.Precio).HasColumnType("decimal(18,2)").IsRequired();
 
         builder.Property(c => c.Activo);
     }

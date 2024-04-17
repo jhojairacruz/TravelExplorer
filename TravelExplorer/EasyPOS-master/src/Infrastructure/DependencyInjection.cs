@@ -1,5 +1,6 @@
 using Application.Data;
 using Domain.Destinos;
+using Domain.PaqueteTuristicos;
 using Domain.Primitives;
 using Infrastructure.Persistence;
 using Infrastructure.Persistence.Repositories;

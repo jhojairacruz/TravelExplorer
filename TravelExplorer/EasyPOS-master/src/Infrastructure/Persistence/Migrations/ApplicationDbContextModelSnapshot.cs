@@ -45,6 +45,42 @@ namespace Infrastructure.Persistence.Migrations
                     b.ToTable("Destinos", (string)null);
                 });
 
+            modelBuilder.Entity("Domain.PaqueteTuristicos.PaqueteTuristico", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Activo")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("FechaFin")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("FechaInicio")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<decimal>("Precio")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PaqueteTuristicos", (string)null);
+                });
+
             modelBuilder.Entity("Domain.Destinos.Destino", b =>
                 {
                     b.OwnsOne("Domain.ValueObjects.Ubicacion", "Ubicacion", b1 =>
