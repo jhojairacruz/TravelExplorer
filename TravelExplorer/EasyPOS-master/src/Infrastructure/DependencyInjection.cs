@@ -31,6 +31,8 @@ public static class DependencyInjection
 
         services.AddScoped<IDestinoRepository, DestinoRepository>();
 
+        services.AddScoped<IPaqueteTuristicoRepository, PaqueteTuristicoRepository>();
+
         return services;
     }
 }

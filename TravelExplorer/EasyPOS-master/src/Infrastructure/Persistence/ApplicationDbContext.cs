@@ -14,6 +14,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext, IUnitOfWor
     }
 
     public DbSet<Destino> Destinos { get; set; }
+    public DbSet<PaqueteTuristico> PaqueteTuristicos { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
