@@ -1,4 +1,5 @@
 using Application.Data;
+using Domain.Clientes;
 using Domain.Destinos;
 using Domain.Primitives;
 using Infrastructure.Persistence;
@@ -30,6 +31,7 @@ public static class DependencyInjection
        
 
         services.AddScoped<IDestinoRepository, DestinoRepository>();
+        services.AddScoped<IClienteRepository, ClienteRepository>();
 
         return services;
     }

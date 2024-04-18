@@ -1,4 +1,5 @@
 using Application.Data;
+using Domain.Clientes;
 using Domain.Destinos;
 using Domain.Primitives;
 
@@ -13,6 +14,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext, IUnitOfWor
         _publisher = publisher ?? throw new ArgumentNullException(nameof(publisher));
     }
 
+    public DbSet<Cliente> Clientes { get; set; }
     public DbSet<Destino> Destinos { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
