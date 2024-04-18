@@ -4,6 +4,7 @@ using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240418025626_CuartaMigration")]
+    partial class CuartaMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -81,42 +84,6 @@ namespace Infrastructure.Persistence.Migrations
                     b.ToTable("Destinos", (string)null);
                 });
 
-<<<<<<< HEAD
-            modelBuilder.Entity("Domain.PaqueteTuristicos.PaqueteTuristico", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("Activo")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Descripcion")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("FechaFin")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("FechaInicio")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<decimal>("Precio")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PaqueteTuristicos", (string)null);
-=======
             modelBuilder.Entity("Domain.Clientes.Cliente", b =>
                 {
                     b.OwnsOne("Domain.ValueObjects.Direccion", "Direccion", b1 =>
@@ -154,7 +121,6 @@ namespace Infrastructure.Persistence.Migrations
 
                     b.Navigation("Direccion")
                         .IsRequired();
->>>>>>> fe382a7786e0a2cb28876681d9b5893cced178ec
                 });
 
             modelBuilder.Entity("Domain.Destinos.Destino", b =>
