@@ -1,6 +1,7 @@
 using Application.Data;
 using Domain.Clientes;
 using Domain.Destinos;
+using Domain.PaquetesDestinos;
 using Domain.PaqueteTuristicos;
 using Domain.Primitives;
 
@@ -18,6 +19,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext, IUnitOfWor
     public DbSet<Cliente> Clientes { get; set; }
     public DbSet<Destino> Destinos { get; set; }
     public DbSet<PaqueteTuristico> PaqueteTuristicos { get; set; }
+    public DbSet<PaquetesDestinos> PaquetesDestinos { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

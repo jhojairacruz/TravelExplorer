@@ -1,6 +1,7 @@
 
 using Domain.Clientes;
 using Domain.Destinos;
+using Domain.PaquetesDestinos;
 using Domain.PaqueteTuristicos;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,7 +11,9 @@ public interface IApplicationDbContext
 {
     DbSet<Cliente> Clientes { get; set; }
     DbSet<Destino> Destinos { get; set; }
-    public DbSet<PaqueteTuristico> PaqueteTuristicos { get; set; }
+    DbSet<PaqueteTuristico> PaqueteTuristicos { get; set; }
+    DbSet<PaquetesDestinos> PaquetesDestinos { get; set; }
+
 
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     
