@@ -1,6 +1,7 @@
 using Application.Data;
 using Domain.Clientes;
 using Domain.Destinos;
+using Domain.PaqueteTuristicos;
 using Domain.Primitives;
 using Infrastructure.Persistence;
 using Infrastructure.Persistence.Repositories;
@@ -32,6 +33,8 @@ public static class DependencyInjection
 
         services.AddScoped<IDestinoRepository, DestinoRepository>();
         services.AddScoped<IClienteRepository, ClienteRepository>();
+
+        services.AddScoped<IPaqueteTuristicoRepository, PaqueteTuristicoRepository>();
 
         return services;
     }

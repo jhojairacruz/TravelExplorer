@@ -1,6 +1,7 @@
 using Application.Data;
 using Domain.Clientes;
 using Domain.Destinos;
+using Domain.PaqueteTuristicos;
 using Domain.Primitives;
 
 namespace Infrastructure.Persistence;
@@ -16,10 +17,12 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext, IUnitOfWor
 
     public DbSet<Cliente> Clientes { get; set; }
     public DbSet<Destino> Destinos { get; set; }
+    public DbSet<PaqueteTuristico> PaqueteTuristicos { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-       modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+      modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+      
     }
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
@@ -38,4 +41,5 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext, IUnitOfWor
 
         return result;
     }
+    
 }

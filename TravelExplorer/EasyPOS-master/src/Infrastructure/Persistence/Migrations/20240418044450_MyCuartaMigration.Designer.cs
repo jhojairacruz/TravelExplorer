@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240416052927_SecondMigration")]
-    partial class SecondMigration
+    [Migration("20240418044450_MyCuartaMigration")]
+    partial class MyCuartaMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,30 +25,30 @@ namespace Infrastructure.Persistence.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Domain.Customers.Customer", b =>
+            modelBuilder.Entity("Domain.Clientes.Cliente", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("Active")
+                    b.Property<bool>("Activo")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Apellido")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<string>("LastName")
+                    b.Property<string>("Nombre")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("PhoneNumber")
+                    b.Property<string>("Telefono")
                         .IsRequired()
                         .HasMaxLength(9)
                         .HasColumnType("nvarchar(9)");
@@ -58,7 +58,7 @@ namespace Infrastructure.Persistence.Migrations
                     b.HasIndex("Email")
                         .IsUnique();
 
-                    b.ToTable("Customers", (string)null);
+                    b.ToTable("Clientes", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Destinos.Destino", b =>
@@ -84,50 +84,78 @@ namespace Infrastructure.Persistence.Migrations
                     b.ToTable("Destinos", (string)null);
                 });
 
-            modelBuilder.Entity("Domain.Customers.Customer", b =>
+            modelBuilder.Entity("Domain.PaqueteTuristicos.PaqueteTuristico", b =>
                 {
-                    b.OwnsOne("Domain.ValueObjects.Address", "Address", b1 =>
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Activo")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("FechaFin")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("FechaInicio")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<decimal>("Precio")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PaqueteTuristicos", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Clientes.Cliente", b =>
+                {
+                    b.OwnsOne("Domain.ValueObjects.Direccion", "Direccion", b1 =>
                         {
-                            b1.Property<Guid>("CustomerId")
+                            b1.Property<Guid>("ClienteId")
                                 .HasColumnType("uniqueidentifier");
 
-                            b1.Property<string>("City")
+                            b1.Property<string>("Calle")
                                 .IsRequired()
-                                .HasMaxLength(40)
-                                .HasColumnType("nvarchar(40)");
+                                .HasMaxLength(50)
+                                .HasColumnType("nvarchar(50)");
 
-                            b1.Property<string>("Country")
+                            b1.Property<string>("Colonia")
                                 .IsRequired()
-                                .HasMaxLength(3)
-                                .HasColumnType("nvarchar(3)");
+                                .HasMaxLength(50)
+                                .HasColumnType("nvarchar(50)");
 
-                            b1.Property<string>("Line1")
+                            b1.Property<string>("Departamento")
                                 .IsRequired()
-                                .HasMaxLength(20)
-                                .HasColumnType("nvarchar(20)");
+                                .HasMaxLength(50)
+                                .HasColumnType("nvarchar(50)");
 
-                            b1.Property<string>("Line2")
-                                .HasMaxLength(20)
-                                .HasColumnType("nvarchar(20)");
-
-                            b1.Property<string>("State")
+                            b1.Property<string>("Municipio")
                                 .IsRequired()
-                                .HasMaxLength(40)
-                                .HasColumnType("nvarchar(40)");
+                                .HasMaxLength(50)
+                                .HasColumnType("nvarchar(50)");
 
-                            b1.Property<string>("ZipCode")
-                                .HasMaxLength(10)
-                                .HasColumnType("nvarchar(10)");
+                            b1.HasKey("ClienteId");
 
-                            b1.HasKey("CustomerId");
-
-                            b1.ToTable("Customers");
+                            b1.ToTable("Clientes");
 
                             b1.WithOwner()
-                                .HasForeignKey("CustomerId");
+                                .HasForeignKey("ClienteId");
                         });
 
-                    b.Navigation("Address")
+                    b.Navigation("Direccion")
                         .IsRequired();
                 });
 
