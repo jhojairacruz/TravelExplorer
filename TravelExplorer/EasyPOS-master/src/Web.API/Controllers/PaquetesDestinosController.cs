@@ -1,4 +1,5 @@
 using Application.PaqueteDestinos.Create;
+using Application.PaqueteDestinos.GetAll;
 using Application.PaqueteTuristicos.Create;
 using Application.PaqueteTuristicos.Delete;
 using Application.PaqueteTuristicos.GetAll;
@@ -20,16 +21,16 @@ namespace Web.API.Controllers
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
-        // [HttpGet]
-        // public async Task<IActionResult> GetAll()
-        // {
-        //     var resultadoPaquetesDestinos = await _mediator.Send(new GetAllPaqueteTuristicosQuery());
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var resultadoPaquetesDestinos = await _mediator.Send(new GetAllPaqueteDestinosQuery());
 
-        //     return resultadoPaquetesDestinos.Match(
-        //         paqueteTuristicos => Ok(paqueteTuristicos),
-        //         errores => Problem(errores)
-        //     );
-        // }
+            return resultadoPaquetesDestinos.Match(
+                PaqueteDestinos => Ok(PaqueteDestinos),
+                errores => Problem(errores)
+            );
+        }
 
     //     [HttpGet("{id}")]
     //     public async Task<IActionResult> GetPaqueteTuristicoById(Guid id)
